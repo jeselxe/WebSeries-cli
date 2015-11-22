@@ -1,0 +1,19 @@
+$icon-font-path: "/fonts/bootstrap/";
+@import "bootstrap-sass-official/assets/stylesheets/bootstrap";
+
+body {
+  background: #fafafa;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #333;
+}
+
+textarea {
+    max-width: 100%;
+    resize: none;
+}
+
+.commentBox {
+    overflow-y: scroll;
+    max-height: 500px;
+    margin: 10px;
+}
