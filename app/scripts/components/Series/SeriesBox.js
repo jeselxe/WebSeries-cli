@@ -24,7 +24,6 @@ class SeriesBox extends React.Component {
 
     componentDidMount() {
         this.loadSeriesFromServer();
-        //setInterval(this.loadCommentsFromServer, this.props.pollInterval);
     }
 
     render() {

@@ -24,13 +24,7 @@ class Serie extends React.Component {
     }
 
     componentDidMount() {
-        /*this.setState({
-            data: {
-                serie : {}
-            }
-        });*/
         this.loadSerieFromServer();
-        //setInterval(this.loadCommentsFromServer, this.props.pollInterval);
     }
     render() {
         return (
