@@ -4,9 +4,9 @@ import routes from './Routes';
 import Nav from './Components/Nav';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import reducers from './reducers';
+import Reducers from './Reducers';
 
-const store = createStore(reducers);
+const store = createStore(Reducers);
 
 ReactDOM.render(<Provider store={store}>{Nav}</Provider>, document.getElementById('nav'));
 ReactDOM.render(<Provider store={store}>{routes}</Provider>, document.getElementById('app'));
