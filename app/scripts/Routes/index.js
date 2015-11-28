@@ -1,9 +1,9 @@
 import React from 'react';
 import {Router, Route, IndexRoute, HistoryLocation} from 'react-router';
-import Series from './Components/Series/SeriesBox';
-import Serie from './Components/Series/Serie';
-import Noticias from './Components/Noticias/NoticiasBox';
-import Noticia from './Components/Noticias/Noticia';
+import Series from '../Components/Series/SeriesBox';
+import Serie from '../Components/Series/Serie';
+import Noticias from '../Components/Noticias/NoticiasBox';
+import Noticia from '../Components/Noticias/Noticia';
 
 export default (
      <Router history={HistoryLocation} >
