@@ -1,5 +1,4 @@
 import React from 'react';
-import { routeNode } from 'react-router5';
 import TemporadasBox from '../Temporadas/TemporadasBox';
 import config from '../../config';
 

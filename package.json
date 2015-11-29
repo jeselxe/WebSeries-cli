@@ -8,11 +8,7 @@
     "react-modal": "^0.6.1",
     "react-redux": "^4.0.0",
     "react-router": "^1.0.0",
-    "react-router5": "^1.0.0",
-    "redux": "^3.0.4",
-    "router5": "^1.1.0",
-    "router5-history": "^1.0.0",
-    "router5-listeners": "^1.0.0"
+    "redux": "^3.0.4"
   },
   "devDependencies": {
     "babel-jest": "^5.0.1",
