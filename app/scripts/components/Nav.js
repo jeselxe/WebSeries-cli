@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import LoginBox from './Login/LoginBox';
 
 export default (
         <nav className="navbar navbar-inverse">
@@ -32,6 +33,7 @@ export default (
                         </ul>
                     </li>
                 </ul>
+                <LoginBox />
             </div>
         </nav>
     );
