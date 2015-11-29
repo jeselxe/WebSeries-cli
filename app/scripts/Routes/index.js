@@ -4,6 +4,7 @@ import Series from '../Components/Series/SeriesBox';
 import Serie from '../Components/Series/Serie';
 import Noticias from '../Components/Noticias/NoticiasBox';
 import Noticia from '../Components/Noticias/Noticia';
+import Register from '../Components/Login/Register';
 
 export default (
      <Router history={HistoryLocation} >
@@ -13,6 +14,7 @@ export default (
            <Route path="serie/:id" component={Serie} />
            <Route path="noticias/:section" component={Noticias}/>
            <Route path="noticia/:id" component={Noticia}/>
+           <Route path="register" component={Register}/>
          </Route>
      </Router>
  );

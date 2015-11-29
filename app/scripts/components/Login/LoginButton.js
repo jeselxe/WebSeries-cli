@@ -31,7 +31,7 @@ class LoginButton extends React.Component {
                     { this.props.loggedIn ?
                         [<li key="1"><a onClick={ this.props.onLogoutClicked }>Logout</a></li>] :
                         [<li key="2"><a onClick={ this.props.onLoginClicked }>Login</a></li>,
-                         <li key="3"><a>Register</a></li>] }
+                         <li key="3"><a href="#/register">Register</a></li>] }
                 </ul>
             </div>
         );
