@@ -1,5 +1,7 @@
 import React from 'react';
+import Tabs from 'react-simpletabs';
 import TemporadasBox from '../Temporadas/TemporadasBox';
+import InfoSerie from './InfoSerie';
 import config from '../../config';
 
 class Serie extends React.Component {
@@ -32,7 +34,15 @@ class Serie extends React.Component {
                     <h2>{this.state.data.title}</h2>
                     <p>{this.state.data.description}</p>
                 </div>
-                <TemporadasBox serie={this.props.params.id} data={this.state.data} />
+                <Tabs>
+                    <Tabs.Panel title="Temporadas">
+                        <TemporadasBox serie={this.props.params.id} data={this.state.data} />
+                    </Tabs.Panel>
+                    <Tabs.Panel title="Información">
+                        <InfoSerie />
+                    </Tabs.Panel>
+                </Tabs>
+
             </div>
         );
     }

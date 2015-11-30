@@ -15,7 +15,7 @@ class ComentariosForm extends React.Component {
             <form className="commentForm" onSubmit={this.handleSubmit.bind(this)}>
                 <div className="input-group">
                     <textarea className="form-control" rows="3" ref="text" placeholder="Comenta algo..."></textarea>
-                    <span className="input-group-addon btn btn-default"><button type="submit" className="btn btn-default">Enviar</button></span>
+                    <span className="input-group-addon"><button type="submit" className="btn btn-primary">Enviar</button></span>
                 </div>
             </form>
         );

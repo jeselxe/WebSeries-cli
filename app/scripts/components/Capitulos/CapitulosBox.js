@@ -23,7 +23,7 @@ class CapitulosBox extends React.Component {
         return (
             <div className="row">
                 <div className="col-md-4">
-                    <CapitulosList data={this.props.data} onSelect={ this.onCapituloSelected.bind(this) } />
+                    <CapitulosList serie={ this.props.serie } temporada={ this.state.temporada } data={this.props.data} onSelect={ this.onCapituloSelected.bind(this) } />
                 </div>
                 <div className="col-md-8">
                     <ComentariosBox serie={ this.props.serie }
