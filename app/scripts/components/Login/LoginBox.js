@@ -38,6 +38,11 @@ class LoginBox extends React.Component {
             <div className="">
                 <LoginButton></LoginButton>
                 <Modal className="modal-dialog"
+                    style={ {
+                        overlay: {
+                            zIndex : 5
+                        }
+                    } }
                     isOpen={this.props.modalIsOpen}
                     onRequestClose={this.props.closeModal} >
 
