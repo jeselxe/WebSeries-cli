@@ -5,15 +5,14 @@ class SeriesList extends React.Component {
     render() {
         var SeriesNodes = this.props.data.map(function (serie) {
             return (
-                <li className="serie" key={serie.id}>
-                    <Link to={`/serie/${serie.id}`}>{serie.title}</Link>
-                </li>
+                <Link to={`/serie/${serie.id}`} className="serie list-group-item" key={serie.id}>{serie.title}</Link>
             );
         })
         return (
-            <ul className="SeriesList">
+            <div className="SeriesList list-group">
                 {SeriesNodes}
-            </ul>
+                <Link to="nueva_serie" className="list-group-item list-group-item-info"><span className="glyphicon glyphicon-plus"></span></Link>
+            </div>
         );
     }
 }

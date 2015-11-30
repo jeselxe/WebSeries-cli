@@ -31,3 +31,43 @@ textarea {
 .margin-top {
     margin-top: 5px;
 }
+
+.tabs {
+  margin-top: -80px;
+}
+.tabs-navigation {
+  padding: 0 50px;
+  max-height: 50px;
+}
+.tabs-menu {
+  display: table;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.tabs-menu-item {
+  float: left;
+  margin-right: 20px;
+  a {
+    display: block;
+    padding: 0 40px;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 0;
+    cursor: pointer;
+    color: #a9a9a9;
+  }
+  &.is-active a {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: 2px solid #337ab7;
+    border-bottom: 0;
+    color: #337ab7;
+  }
+  &:not(.is-active) a:hover {
+    color: #337ab7;
+  }
+}
+.tab-panel {
+  padding: 10px 50px;
+}

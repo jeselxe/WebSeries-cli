@@ -5,15 +5,13 @@ class NoticiasList extends React.Component {
     render () {
         var NoticiasNodes = this.props.data.map(function (noticia) {
             return (
-                <li key={noticia.idn}>
-                    <Link to={`/noticia/${noticia.idn}`}>{noticia.title}</Link>
-                </li>
+                <Link to={`/noticia/${noticia.idn}`} className="list-group-item" key={noticia.idn}>{ $('<div />').html(noticia.title).text() }</Link>
             );
         })
         return (
-            <ul className="noticias-list">
+            <div className="list-group">
                 {NoticiasNodes}
-            </ul>
+            </div>
         )
     }
 }
