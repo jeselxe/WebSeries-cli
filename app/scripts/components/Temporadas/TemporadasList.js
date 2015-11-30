@@ -1,6 +1,5 @@
 import React from 'react';
 import ComentariosBox from '../Comentarios/ComentariosBox';
-import {Link} from 'react-router';
 import Temporada from './Temporada';
 
 class TemporadasList extends React.Component {
@@ -26,7 +25,7 @@ class TemporadasList extends React.Component {
                 <h4>Temporadas</h4>
                 <div className="btn-group btn-group-justified">
                     {TemporadasNodes}
-                    <Link to="#" className="btn btn-default btn-block" ><span className="glyphicon glyphicon-plus"></span></Link>
+                    <a className="btn btn-default btn-block" onClick={ this.props.onNewTemporada }><span className="glyphicon glyphicon-plus"></span></a>
                 </div>
             </div>
         );
