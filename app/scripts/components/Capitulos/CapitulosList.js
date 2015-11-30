@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import {Link} from 'react-router';
+import Capitulo from './Capitulo';
 
 class CapitulosList extends React.Component {
     constructor(props) {
@@ -20,7 +20,7 @@ class CapitulosList extends React.Component {
             <div className="CapitulosList">
                 <h4>Capitulos</h4>
                 {CapitulosNodes}
-                <Link to="#" className="btn btn-default btn-block"><span className="glyphicon glyphicon-plus"></span></Link>
+                <Capitulo serie={ this.props.serie } temporada={ this.props.temporada } />
             </div>
         );
     }

@@ -21,3 +21,13 @@ textarea {
 .modal-dialog {
     height: 250px;
 }
+
+.input-group {
+    &.input-group-block {
+        margin-top: 5px;
+    }
+}
+
+.margin-top {
+    margin-top: 5px;
+}

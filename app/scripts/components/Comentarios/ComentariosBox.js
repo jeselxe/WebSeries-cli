@@ -40,6 +40,9 @@ class ComentariosBox extends React.Component {
                 this.setState({data: data.comentarios});
             }.bind(this),
             error: function(xhr, status, err) {
+                this.setState({
+                    data:[] 
+                });
                 console.error(this.props.url, status, err.toString());
             }.bind(this)
         });

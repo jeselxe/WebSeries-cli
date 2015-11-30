@@ -25,7 +25,7 @@ class TemporadasList extends React.Component {
                 <h4>Temporadas</h4>
                 <div className="btn-group btn-group-justified">
                     {TemporadasNodes}
-                    <a className="btn btn-default btn-block" onClick={ this.props.onNewTemporada }><span className="glyphicon glyphicon-plus"></span></a>
+                    <a className="btn btn-primary btn-block" onClick={ this.props.onNewTemporada }><span className="glyphicon glyphicon-plus"></span></a>
                 </div>
             </div>
         );
