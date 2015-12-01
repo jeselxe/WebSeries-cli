@@ -34,7 +34,7 @@ class Noticia extends React.Component {
     render () {
         return (
             <div>
-                <h1>{this.state.data.title}</h1>
+                <h1>{$('<div />').html(this.state.data.title).text()}</h1>
                 <span dangerouslySetInnerHTML={ this.rawMarkup(this.state.data.text) }></span>
             </div>
         )
