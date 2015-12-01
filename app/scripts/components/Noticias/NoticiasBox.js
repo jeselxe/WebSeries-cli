@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import NoticiasList from './NoticiasList';
 import config from '../../config';
+import newsSections from '../../utils/noticiasSections';
 
 class NoticiasBox extends React.Component {
     constructor(props) {
@@ -30,7 +31,7 @@ class NoticiasBox extends React.Component {
     render () {
         return (
             <div className="noticias">
-                <h1>{this.props.params.section}</h1>
+                <legend>{newsSections(this.props.params.section)}</legend>
                 <NoticiasList data={ this.state.data } />
             </div>
         )

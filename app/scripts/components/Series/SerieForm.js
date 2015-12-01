@@ -50,6 +50,7 @@ class SerieForm extends React.Component {
         return (
             <div>
                 <form action="" className="form-horizontal" onSubmit={ this.handleSubmit.bind(this) } >
+                    <legend>Nueva serie</legend>
                     <div className="form-group">
                         <label htmlFor="" className="control-label col-md-2">Título</label>
                         <div className="col-md-10"><input type="text" ref="title" className="form-control" /></div>
