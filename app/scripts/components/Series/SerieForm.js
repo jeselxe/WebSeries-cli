@@ -60,7 +60,7 @@ class SerieForm extends React.Component {
                         <div className="col-md-10"><textarea ref="description" className="form-control" rows="3" /></div>
                     </div>
                     <div className="form-group"><div className="col-md-offset-10 col-md-2">
-                        <input type="submit" className="btn btn-primary btn-block" />
+                        <input type="submit" className="btn btn-primary btn-block" value="Añadir Serie" />
                     </div></div>
                 </form>
             </div>
