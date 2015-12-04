@@ -6,10 +6,11 @@ import SerieForm from '../Components/Series/SerieForm';
 import Noticias from '../Components/Noticias/NoticiasBox';
 import Noticia from '../Components/Noticias/Noticia';
 import Register from '../Components/Login/Register';
+import App from '../Components/App';
 
 export default (
-     <Router history={HistoryLocation} >
-          <Route component="App" path='/'>
+     <Router history={HistoryLocation}>
+          <Route component={App} path='/'>
            <IndexRoute component={Series} />
            <Route path="series" component={Series} />
            <Route path="nueva_serie" component={SerieForm} />
