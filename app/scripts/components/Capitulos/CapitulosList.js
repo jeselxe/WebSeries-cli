@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Capitulo from './Capitulo';
+import ActionButton from '../ActionButton';
 
 class CapitulosList extends React.Component {
     constructor(props) {
@@ -12,12 +13,22 @@ class CapitulosList extends React.Component {
     render () {
         var CapitulosNodes = this.props.data.map(function (capitulo) {
             return (
-                <button className="btn btn-default btn-block" id={'capitulo_' + capitulo.id} key={capitulo.id} onClick={this.select.bind(this)}>{capitulo.title}</button>
+                <div className="list-group-item actions-list" key={capitulo.id}>
+                    <a id={'capitulo_' + capitulo.id}  onClick={this.select.bind(this)}>
+                        {capitulo.title}
+                    </a>
+                    <div className="actions">
+                        <ActionButton>
+                            <ActionButton.Item>Editar</ActionButton.Item>
+                            <ActionButton.Item>Borrar</ActionButton.Item>
+                        </ActionButton>
+                    </div>
+                </div>
             );
         }.bind(this));
 
         return (
-            <div className="CapitulosList">
+            <div className="CapitulosList list-group">
                 <h4>Capitulos</h4>
                 {CapitulosNodes}
                 <Capitulo serie={ this.props.serie } temporada={ this.props.temporada } />
