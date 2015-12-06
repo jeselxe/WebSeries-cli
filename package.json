@@ -6,6 +6,7 @@
     "marked": "^0.3.5",
     "moment": "^2.10.6",
     "react-dom": "^0.14.3",
+    "react-google-charts": "^0.1.9",
     "react-modal": "^0.6.1",
     "react-onclickoutside": "^4.5.0",
     "react-redux": "^4.0.0",
