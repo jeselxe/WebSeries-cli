@@ -42,7 +42,7 @@ class TemporadasBox extends React.Component {
                 type: 'POST',
                 cache: false,
                 success: function(data, status, xhr) {
-                    
+
                 },
                 error: function(xhr, status, err) {
                     console.error(config.api.url, status, err);
@@ -66,7 +66,7 @@ class TemporadasBox extends React.Component {
     render() {
         return (
             <div className="temporadas">
-                <TemporadasList data={ this.props.data } onSelect={ this.loadTemporadaFromServer.bind(this) } onNewTemporada={ this.newTemporada.bind(this) } />
+                <TemporadasList serie={ this.props.serie } data={ this.props.data } onSelect={ this.loadTemporadaFromServer.bind(this) } onNewTemporada={ this.newTemporada.bind(this) } />
                 <CapitulosBox serie={ this.props.serie } data={ this.state.data } />
             </div>
         );

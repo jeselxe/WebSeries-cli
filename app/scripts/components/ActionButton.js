@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
+import listensToClickOutside from 'react-onclickoutside/decorator';
 
+@listensToClickOutside()
 class ActionButton extends React.Component {
     constructor(props) {
         super(props);
@@ -10,8 +12,15 @@ class ActionButton extends React.Component {
     componentWillReceiveProps(nextProps) {
 
     }
+    handleClickOutside(event) {
+        this.setState({
+            toggled: false
+        });
+    }
     toggle() {
-        this.state.toggled = !this.state.toggled;
+        this.setState({
+            toggled: !this.state.toggled
+        });
         this.forceUpdate();
     }
     render () {

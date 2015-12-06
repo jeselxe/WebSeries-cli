@@ -16,7 +16,7 @@ class TemporadasList extends React.Component {
         if (temporadas) {
             TemporadasNodes = temporadas.map(function (temporada) {
                 return (
-                    <Temporada id={ temporada.id } onClick={ this.select.bind(this) } key={ temporada.id }>{temporada.season}</Temporada>
+                    <Temporada serie={ this.props.serie } id={ temporada.id } onClick={ this.select.bind(this) } key={ temporada.id }>{temporada.season}</Temporada>
                 );
             }.bind(this));
         }
