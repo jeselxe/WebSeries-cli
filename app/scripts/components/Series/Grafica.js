@@ -6,7 +6,7 @@ class Grafica extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data : [],
+            charged : false,
             options: {
                 title: 'Visualizaciones',
                 hAxis: {
@@ -57,9 +57,9 @@ class Grafica extends React.Component {
         ]
         this.setState({
             rows,
-            columns
+            columns,
+            charged: true
         });
-        this.forceUpdate();
     }
     componentDidMount() {
         console.log('componentDidMount');
@@ -68,6 +68,15 @@ class Grafica extends React.Component {
     render () {
         return (
             <div className="">
+                { (this.state.charged) ?
+                    <div></div>
+                    :
+                    <div className="sk-three-bounce">
+                      <div className="sk-child sk-bounce1"></div>
+                      <div className="sk-child sk-bounce2"></div>
+                      <div className="sk-child sk-bounce3"></div>
+                    </div>
+                }
                 <Chart
                     chartType="LineChart"
                     width={"100%"}
