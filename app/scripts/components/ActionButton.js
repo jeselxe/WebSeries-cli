@@ -32,7 +32,7 @@ class ActionButton extends React.Component {
 ActionButton.Item = React.createClass({
     render () {
         return (
-            <li><a><span>{this.props.children}</span></a></li>
+            <li><a className="edit" onClick={this.props.onClick}><span>{this.props.children}</span></a></li>
         );
     }
 });

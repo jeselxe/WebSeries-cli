@@ -12,8 +12,8 @@ class SeriesList extends React.Component {
                     </Link>
                     <div className="actions">
                         <ActionButton>
-                            <ActionButton.Item>Editar</ActionButton.Item>
                             <ActionButton.Item>Borrar</ActionButton.Item>
+                            <ActionButton.Item>Editar</ActionButton.Item>
                         </ActionButton>
                     </div>
                 </div>
