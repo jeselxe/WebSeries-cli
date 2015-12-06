@@ -1,8 +1,9 @@
 const initialState = {
   series: [],
+  capitulos: [],
+  comentarios: [],
   serie: {},
-  temporada: {},
-  capitulo: {}
+  temporada: null,
 };
 
 export default function series(state=initialState, action) {
@@ -12,6 +13,16 @@ export default function series(state=initialState, action) {
                 ...state,
                 series: action.series
             };
+        case 'GET_EPISODES':
+            return {
+                ...state,
+                capitulos: action.episodes
+            }
+        case 'GET_COMMENTS':
+            return {
+                ...state,
+                comentarios: action.comments
+            }
         case 'SELECT_SERIE':
             return {
                 ...state,
@@ -20,13 +31,8 @@ export default function series(state=initialState, action) {
         case 'SELECT_SEASON':
             return {
                 ...state,
-                temporada: action.season
+                temporada: action.season || state.serie.temporadas[0]
             };
-        case 'SELECT_EPISODE':
-            return {
-                ...state,
-                capitulo: action.episode
-             };
         default:
             return state;
     }

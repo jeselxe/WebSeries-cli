@@ -1,12 +1,22 @@
 import React, { PropTypes } from 'react'
 import {connect} from 'react-redux';
 import config from '../../config';
+import serieActions from '../../Actions/series';
 
 const mapStateToProps = (state) => {
     return {
-        token : state.login.token
+        token : state.login.token,
+        data : state.series
     }
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        selectEpisode : (serie, temporada, capitulo) => {
+            serieActions.selectEpisode(dispatch, serie, temporada, capitulo);
+        }
+    }
+};
 
 class Capitulo extends React.Component {
     editCapitulo() {
@@ -42,9 +52,12 @@ class Capitulo extends React.Component {
             })
         }
     }
+    selected() {
+        this.props.selectEpisode(this.props.data.serie.id, this.props.data.temporada, this.props.capitulo);
+    }
     renderTitle() {
         return (
-            <a onClick={ this.props.clicked }>{ this.props.children }</a>
+            <a onClick={ this.selected.bind(this) }>{ this.props.children }</a>
         );
     }
     renderSubmit() {
@@ -67,4 +80,4 @@ class Capitulo extends React.Component {
     }
 }
 
-export default connect(mapStateToProps)(Capitulo);
+export default connect(mapStateToProps,mapDispatchToProps)(Capitulo);

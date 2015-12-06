@@ -1,14 +1,21 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import ComentariosBox from '../Comentarios/ComentariosBox';
 import Temporada from './Temporada';
+
+const mapStateToProps = (state) => {
+    return {
+        data : state.series.serie,
+        serie : state.series.serie
+    }
+}
 
 class TemporadasList extends React.Component {
     constructor(props) {
         super(props);
     }
-    select(e) {
-        var temporadaId = e.target.id.split('_')[1]
-        this.props.onSelect(temporadaId);
+    select(temporada) {
+        this.props.onSelect(temporada.id);
     }
     render() {
         var temporadas = this.props.data.temporadas;
@@ -16,7 +23,7 @@ class TemporadasList extends React.Component {
         if (temporadas) {
             TemporadasNodes = temporadas.map(function (temporada) {
                 return (
-                    <Temporada serie={ this.props.serie } id={ temporada.id } onClick={ this.select.bind(this) } key={ temporada.id }>{temporada.season}</Temporada>
+                    <Temporada id={ temporada.id } key={ temporada.id }>{temporada.season}</Temporada>
                 );
             }.bind(this));
         }
@@ -32,4 +39,4 @@ class TemporadasList extends React.Component {
     }
 }
 
-export default TemporadasList;
+export default connect(mapStateToProps)(TemporadasList);

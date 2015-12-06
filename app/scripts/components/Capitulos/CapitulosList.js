@@ -7,10 +7,10 @@ import config from '../../config';
 
 const mapStateToProps = (state) => {
     return {
-        token : state.login.token
+        token : state.login.token,
+        data: state.series.capitulos
     }
 }
-
 
 class CapitulosList extends React.Component {
     constructor(props) {
@@ -21,9 +21,6 @@ class CapitulosList extends React.Component {
                 edit: false
             }
         }
-    }
-    select(capitulo) {
-        this.props.onSelect(capitulo.id);
     }
     borrar(capitulo) {
         if(this.props.token) {
@@ -61,7 +58,7 @@ class CapitulosList extends React.Component {
         var CapitulosNodes = this.props.data.map(function (capitulo) {
             return (
                 <div className="list-group-item actions-list" key={capitulo.id}>
-                    <Capitulo clicked={ this.select.bind(this, capitulo) } edit={this.state.editar} serie={ this.props.serie } temporada={ this.props.temporada } capitulo={capitulo.id}>{capitulo.title}</Capitulo>
+                    <Capitulo edit={this.state.editar} capitulo={capitulo.id}>{capitulo.title}</Capitulo>
                     <div className="actions">
                         <ActionButton>
                             <ActionButton.Item onClick={ this.borrar.bind(this, capitulo) }>Borrar</ActionButton.Item>

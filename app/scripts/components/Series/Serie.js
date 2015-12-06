@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Tabs from 'react-simpletabs';
 import TemporadasBox from '../Temporadas/TemporadasBox';
 import InfoSerie from './InfoSerie';
+import serieActions from '../../Actions/series';
 import config from '../../config';
 
 const mapStateToProps = (state) => {
@@ -23,6 +24,7 @@ const mapDispatchToProps = (dispatch) => {
                         type: 'SELECT_SERIE',
                         serie: data.serie
                     });
+                    serieActions.selectSeason(dispatch, id, data.serie.temporadas[0].id);
                 },
                 error: function(xhr, status, err) {
                     console.error(config.api.url, status, err.toString());
@@ -45,7 +47,7 @@ class Serie extends React.Component {
                 </div>
                 <Tabs>
                     <Tabs.Panel title="Temporadas">
-                        <TemporadasBox serie={this.props.params.id} data={this.props.data} />
+                        <TemporadasBox />
                     </Tabs.Panel>
                     <Tabs.Panel title="Información">
                         <InfoSerie title={this.props.data.title} />

@@ -110,7 +110,7 @@ class ComentariosBox extends React.Component {
             <div className='commentBox'>
                 <h4>Comentarios</h4>
                 <CommentForm onCommentSubmit={this.handleCommentSubmit.bind(this)} />
-                <CommentList data={this.state.data} onCommentEdited={this.handleCommentEdited.bind(this)} onCommentDeleted={this.handleCommentDeleted.bind(this)}/>
+                <CommentList onCommentEdited={this.handleCommentEdited.bind(this)} onCommentDeleted={this.handleCommentDeleted.bind(this)}/>
             </div>
         );
     }
