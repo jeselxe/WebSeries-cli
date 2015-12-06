@@ -10,6 +10,14 @@ class NoticiasList extends React.Component {
         })
         return (
             <div className="list-group">
+                { (this.props.data.length < 1) ?
+                <div className="sk-three-bounce">
+                  <div className="sk-child sk-bounce1"></div>
+                  <div className="sk-child sk-bounce2"></div>
+                  <div className="sk-child sk-bounce3"></div>
+                </div>
+                :
+                <div></div>}
                 {NoticiasNodes}
             </div>
         )

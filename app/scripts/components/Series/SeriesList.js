@@ -21,6 +21,15 @@ class SeriesList extends React.Component {
         })
         return (
             <div className="SeriesList list-group">
+                { (this.props.data.length < 1) ?
+                <div className="sk-three-bounce">
+                  <div className="sk-child sk-bounce1"></div>
+                  <div className="sk-child sk-bounce2"></div>
+                  <div className="sk-child sk-bounce3"></div>
+                </div>
+                :
+                <div></div>}
+
                 {SeriesNodes}
                 <Link to="nueva_serie" className="list-group-item list-group-item-info"><span className="glyphicon glyphicon-plus"></span></Link>
             </div>
