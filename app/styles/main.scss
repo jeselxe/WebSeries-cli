@@ -1,6 +1,9 @@
 $icon-font-path: "/fonts/bootstrap/";
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
 
+@import "components/comments";
+@import "components/ActionButton/ActionButton";
+
 body {
   background: #fafafa;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -70,4 +73,15 @@ textarea {
 }
 .tab-panel {
   padding: 10px 50px;
+}
+
+.actions-list {
+    .actions {
+        display: none;
+    }
+    &:hover {
+        .actions {
+            display: inherit;
+        }
+    }
 }

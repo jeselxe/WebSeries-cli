@@ -38,6 +38,51 @@ class ComentariosBox extends React.Component {
             })
         }
     }
+    handleCommentEdited(comment) {
+        if(this.props.token) {
+            $.ajax({
+                url: config.api.url + '/series/' + this.props.serie + '/temporada/' + this.props.temporada + '/capitulo/' + this.props.capitulo + '/comentario/' + comment.id,
+                headers: {
+                    'Authorization' : 'Bearer ' + this.props.token
+                },
+                type: 'PUT',
+                data: comment,
+                success: function(data) {
+                    this.loadCommentsFromServer(this.props.temporada, this.props.capitulo);
+                }.bind(this),
+                error: function(xhr, status, err) {
+                    console.error(this.props.url, status, err.toString());
+                }.bind(this)
+            });
+        }
+        else {
+            this.props.dispatch({
+                type: 'TOGGLE_MODAL'
+            })
+        }
+    }
+    handleCommentDeleted(comment) {
+        if(this.props.token) {
+            $.ajax({
+                url: config.api.url + '/series/' + this.props.serie + '/temporada/' + this.props.temporada + '/capitulo/' + this.props.capitulo + '/comentario/' + comment.id,
+                headers: {
+                    'Authorization' : 'Bearer ' + this.props.token
+                },
+                type: 'DELETE',
+                success: function(data) {
+                    this.loadCommentsFromServer(this.props.temporada, this.props.capitulo);
+                }.bind(this),
+                error: function(xhr, status, err) {
+                    console.error(this.props.url, status, err.toString());
+                }.bind(this)
+            });
+        }
+        else {
+            this.props.dispatch({
+                type: 'TOGGLE_MODAL'
+            })
+        }
+    }
     loadCommentsFromServer(temporada, capitulo) {
         $.ajax({
             url: config.api.url + '/series/' + this.props.serie + '/temporada/' + temporada + '/capitulo/' + capitulo,
@@ -65,7 +110,7 @@ class ComentariosBox extends React.Component {
             <div className='commentBox'>
                 <h4>Comentarios</h4>
                 <CommentForm onCommentSubmit={this.handleCommentSubmit.bind(this)} />
-                <CommentList data={this.state.data}/>
+                <CommentList data={this.state.data} onCommentEdited={this.handleCommentEdited.bind(this)} onCommentDeleted={this.handleCommentDeleted.bind(this)}/>
             </div>
         );
     }

@@ -12,12 +12,15 @@ class ComentariosForm extends React.Component {
     }
     render () {
         return (
-            <form className="commentForm" onSubmit={this.handleSubmit.bind(this)}>
-                <div className="input-group">
-                    <textarea className="form-control" rows="3" ref="text" placeholder="Comenta algo..."></textarea>
-                    <span className="input-group-addon"><button type="submit" className="btn btn-primary">Enviar</button></span>
-                </div>
-            </form>
+            <div className="commentForm">
+                <form className="" onSubmit={this.handleSubmit.bind(this)}>
+                    <div className="input-group">
+                        <textarea className="form-control" rows="3" ref="text" placeholder="Comenta algo..." defaultValue={this.props.children || ''}></textarea>
+                        <span className="input-group-addon"><button type="submit" className="btn btn-primary">Enviar</button></span>
+                    </div>
+                </form>
+                <div className="comment-info">Compatible con markdown</div>
+            </div>
         );
     }
 }
