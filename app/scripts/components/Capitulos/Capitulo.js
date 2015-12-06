@@ -16,7 +16,7 @@ class Capitulo extends React.Component {
             return;
         }
         else if(this.props.token) {
-            console.log('new capitulo');
+            console.log('edit capitulo');
             $.ajax({
                 url: config.api.url + '/series/' + this.props.serie + '/temporada/' + this.props.temporada + '/capitulo/' + this.props.capitulo,
                 headers: {
@@ -61,7 +61,6 @@ class Capitulo extends React.Component {
         );
     }
     render () {
-        console.log(this.props);
         return(
             <div className="">{ this.props.edit.id === this.props.capitulo && this.props.edit.edit ? this.renderSubmit() : this.renderTitle() }</div>
         );

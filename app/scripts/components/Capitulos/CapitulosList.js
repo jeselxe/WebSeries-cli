@@ -2,6 +2,15 @@ import React, { PropTypes } from 'react';
 import NewCapitulo from './NewCapitulo';
 import Capitulo from './Capitulo';
 import ActionButton from '../ActionButton';
+import {connect} from 'react-redux';
+import config from '../../config';
+
+const mapStateToProps = (state) => {
+    return {
+        token : state.login.token
+    }
+}
+
 
 class CapitulosList extends React.Component {
     constructor(props) {
@@ -16,8 +25,29 @@ class CapitulosList extends React.Component {
     select(capitulo) {
         this.props.onSelect(capitulo.id);
     }
-    borrar() {
+    borrar(capitulo) {
+        if(this.props.token) {
+            console.log('delete capitulo');
+            $.ajax({
+                url: config.api.url + '/series/' + this.props.serie + '/temporada/' + this.props.temporada + '/capitulo/' + capitulo.id,
+                headers: {
+                    'Authorization' : 'Bearer ' + this.props.token
+                },
+                type: 'DELETE',
+                cache: false,
+                success: function(data, status, xhr) {
 
+                },
+                error: function(xhr, status, err) {
+                    console.error(config.api.url, status, err);
+                }
+            });
+        }
+        else {
+            this.props.dispatch({
+                type: 'TOGGLE_MODAL'
+            })
+        }
     }
     editar(capitulo) {
         this.setState({
@@ -34,7 +64,7 @@ class CapitulosList extends React.Component {
                     <Capitulo clicked={ this.select.bind(this, capitulo) } edit={this.state.editar} serie={ this.props.serie } temporada={ this.props.temporada } capitulo={capitulo.id}>{capitulo.title}</Capitulo>
                     <div className="actions">
                         <ActionButton>
-                            <ActionButton.Item onClick={ this.borrar.bind(capitulo) }>Borrar</ActionButton.Item>
+                            <ActionButton.Item onClick={ this.borrar.bind(this, capitulo) }>Borrar</ActionButton.Item>
                             <ActionButton.Item onClick={ this.editar.bind(this, capitulo) }>Editar</ActionButton.Item>
                         </ActionButton>
                     </div>
@@ -52,4 +82,4 @@ class CapitulosList extends React.Component {
     }
 }
 
-export default CapitulosList;
+export default connect(mapStateToProps)(CapitulosList);
