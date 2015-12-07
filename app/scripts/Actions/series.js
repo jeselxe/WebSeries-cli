@@ -1,5 +1,5 @@
 import config from '../config';
-import {selectSeason} from './temporadas';
+import temporadas from './temporadas';
 import modal from './modal';
 
 const getSeries = (dispatch) => {
@@ -31,7 +31,7 @@ const getSerie = (dispatch, id) => {
             });
 
             if(data.serie.temporadas.length>0) {
-                selectSeason(dispatch, id, data.serie.temporadas[0].id);
+                temporadas.selectSeason(dispatch, id, data.serie.temporadas[0].id);
             }
         },
         error: function(xhr, status, err) {
@@ -83,6 +83,6 @@ const newSerie = (dispatch, token, serie) => {
 export default {
     getSeries,
     getSerie,
-    newSerie
-
+    newSerie,
+    selectSerie
 }
