@@ -24,6 +24,8 @@ const getSeries = (dispatch) => {
     });
 }
 
+
+
 const getSerie = (dispatch, id) => {
     $.ajax({
         url: config.api.url + '/series/' + id,
@@ -38,6 +40,23 @@ const getSerie = (dispatch, id) => {
             if(data.serie.temporadas.length>0) {
                 selectSeason(dispatch, id, data.serie.temporadas[0].id);
             }
+        },
+        error: function(xhr, status, err) {
+            console.error(config.api.url, status, err.toString());
+        }
+    });
+}
+
+const selectSerie = (dispatch, id) => {
+    $.ajax({
+        url: config.api.url + '/series/' + id,
+        dataType: 'json',
+        cache: false,
+        success: function(data) {
+            dispatch({
+                type: 'SELECT_SERIE',
+                serie: data.serie
+            });
         },
         error: function(xhr, status, err) {
             console.error(config.api.url, status, err.toString());
@@ -247,6 +266,28 @@ const newComment = (dispatch, token, serie, season, episode, data) => {
     }
 }
 
+const newSerieComment = (dispatch, token, serie, data) => {
+    if(token) {
+        $.ajax({
+            url: config.api.url + '/series/' + serie + '/comentario',
+            headers: {
+                'Authorization' : 'Bearer ' + token
+            },
+            type: 'POST',
+            data,
+            success: function(data) {
+                selectSerie(dispatch, serie);
+            },
+            error: function(xhr, status, err) {
+                console.error(config.api.url, status, err.toString());
+            }
+        });
+    }
+    else {
+        modal(dispatch);
+    }
+}
+
 const updateComment = (dispatch, token, serie, season, episode, comment, data) => {
     if(token) {
         $.ajax({
@@ -258,6 +299,28 @@ const updateComment = (dispatch, token, serie, season, episode, comment, data) =
             data,
             success: function(data) {
                 selectEpisode(dispatch, serie, season, episode);
+            },
+            error: function(xhr, status, err) {
+                console.error(config.api.url, status, err.toString());
+            }
+        });
+    }
+    else {
+        modal(dispatch);
+    }
+}
+
+const updateSerieComment = (dispatch, token, serie, comment, data) => {
+    if(token) {
+        $.ajax({
+            url: config.api.url + '/series/' + serie + '/comentario/' + comment,
+            headers: {
+                'Authorization' : 'Bearer ' + token
+            },
+            type: 'PUT',
+            data,
+            success: function(data) {
+                selectSerie(dispatch, serie);
             },
             error: function(xhr, status, err) {
                 console.error(config.api.url, status, err.toString());
@@ -290,6 +353,27 @@ const deleteComment = (dispatch, token, serie, season, episode, comment) => {
     }
 }
 
+const deleteSerieComment = (dispatch, token, serie, comment) => {
+    if(token) {
+        $.ajax({
+            url: config.api.url + '/series/' + serie + '/comentario/' + comment,
+            headers: {
+                'Authorization' : 'Bearer ' + token
+            },
+            type: 'DELETE',
+            success: function(data) {
+                selectSerie(dispatch, serie);
+            },
+            error: function(xhr, status, err) {
+                console.error(config.api.url, status, err.toString());
+            }
+        });
+    }
+    else {
+        modal(dispatch);
+    }
+}
+
 export default {
     getSeries,
     getSerie,
@@ -303,6 +387,9 @@ export default {
     updateEpisode,
     newComment,
     updateComment,
-    deleteComment
+    deleteComment,
+    newSerieComment,
+    updateSerieComment,
+    deleteSerieComment
 
 }

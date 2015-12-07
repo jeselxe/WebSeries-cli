@@ -23,6 +23,15 @@ const mapDispatchToProps = (dispatch) => {
         },
         newComment: (token, serie, season, episode, data) => {
             serieActions.newComment(dispatch, token, serie, season, episode, data);
+        },
+        updateSerieComment: (token, serie, comment, data) => {
+            serieActions.updateSerieComment(dispatch, token, serie, comment, data);
+        },
+        deleteSerieComment: (token, serie, comment) => {
+            serieActions.deleteSerieComment(dispatch, token, serie, comment);
+        },
+        newSerieComment: (token, serie, data) => {
+            serieActions.newSerieComment(dispatch, token, serie, data);
         }
     }
 };
@@ -33,12 +42,18 @@ class ComentariosBox extends React.Component {
         this.state = { data : [] };
     }
     handleCommentSubmit(comment) {
+        this.props.serie ?
+        this.props.newSerieComment(this.props.token, this.props.serie.id, comment) :
         this.props.newComment(this.props.token, this.props.serie.id, this.props.temporada, this.props.capitulo, comment);
     }
     handleCommentEdited(comment) {
+        this.props.serie ?
+        this.props.updateSerieComment(this.props.token, this.props.serie.id, comment.id, comment) :
         this.props.updateComment(this.props.token, this.props.serie.id, this.props.temporada, this.props.capitulo, comment.id, comment);
     }
     handleCommentDeleted(comment) {
+        this.props.serie ?
+        this.props.deleteSerieComment(this.props.token, this.props.serie.id, comment.id) :
         this.props.deleteComment(this.props.token, this.props.serie.id, this.props.temporada, this.props.capitulo, comment.id)
     }
     render () {
@@ -46,7 +61,7 @@ class ComentariosBox extends React.Component {
             <div className='commentBox'>
                 <h4>Comentarios</h4>
                 <CommentForm onCommentSubmit={this.handleCommentSubmit.bind(this)} />
-                <CommentList onCommentEdited={this.handleCommentEdited.bind(this)} onCommentDeleted={this.handleCommentDeleted.bind(this)}/>
+                <CommentList data={this.props.data} onCommentEdited={this.handleCommentEdited.bind(this)} onCommentDeleted={this.handleCommentDeleted.bind(this)}/>
             </div>
         );
     }

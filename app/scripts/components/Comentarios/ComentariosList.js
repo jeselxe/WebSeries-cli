@@ -1,12 +1,5 @@
 import React, { PropTypes } from 'react';
-import {connect} from 'react-redux';
 import Comment from './Comentario';
-
-const mapStateToProps = (state) => {
-    return {
-        data: state.series.comentarios
-    }
-};
 
 class ComentariosList extends React.Component {
     render () {
@@ -25,4 +18,4 @@ class ComentariosList extends React.Component {
     }
 }
 
-export default connect(mapStateToProps)(ComentariosList);
+export default ComentariosList;

@@ -36,7 +36,7 @@ class Serie extends React.Component {
                         <TemporadasBox />
                     </Tabs.Panel>
                     <Tabs.Panel title="Información">
-                        <InfoSerie title={this.props.data.title} />
+                        <InfoSerie title={this.props.data.title} comentarios={this.props.data.comentarios} />
                     </Tabs.Panel>
                 </Tabs>
 

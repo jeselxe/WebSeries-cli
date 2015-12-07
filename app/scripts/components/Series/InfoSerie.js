@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Grafica from './Grafica';
+import ComentariosBox from '../Comentarios/ComentariosBox';
 
 class InfoSerie extends React.Component {
     render () {
@@ -7,7 +8,7 @@ class InfoSerie extends React.Component {
             <div className="row">
                 <div className="col-md-6"><Grafica title={this.props.title} /></div>
                 <div className="col-md-6">
-                    Comentarios
+                    <ComentariosBox data={this.props.comentarios} serie={true} />
                 </div>
             </div>
         );

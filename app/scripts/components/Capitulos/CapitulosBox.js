@@ -1,6 +1,13 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import CapitulosList from './CapitulosList';
 import ComentariosBox from '../Comentarios/ComentariosBox';
+
+const mapStateToProps = (state) => {
+    return {
+        data: state.series.comentarios
+    }
+};
 
 class CapitulosBox extends React.Component {
 
@@ -11,11 +18,11 @@ class CapitulosBox extends React.Component {
                     <CapitulosList />
                 </div>
                 <div className="col-md-8">
-                    <ComentariosBox  />
+                    <ComentariosBox data={ this.props.data } serie={false} />
                 </div>
             </div>
         );
     }
 }
 
-export default CapitulosBox;
+export default connect(mapStateToProps)(CapitulosBox);
