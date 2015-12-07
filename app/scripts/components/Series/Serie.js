@@ -15,21 +15,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getSerie: (id) => {
-            $.ajax({
-                url: config.api.url + '/series/' + id,
-                dataType: 'json',
-                cache: false,
-                success: function(data) {
-                    dispatch({
-                        type: 'SELECT_SERIE',
-                        serie: data.serie
-                    });
-                    serieActions.selectSeason(dispatch, id, data.serie.temporadas[0].id);
-                },
-                error: function(xhr, status, err) {
-                    console.error(config.api.url, status, err.toString());
-                }
-            });
+            serieActions.getSerie(dispatch, id);
         }
     }
 }

@@ -1,22 +1,4 @@
-import React, { PropTypes } from 'react'
-import {connect} from 'react-redux';
-import config from '../../config';
-import serieActions from '../../Actions/series';
-
-const mapStateToProps = (state) => {
-    return {
-        token : state.login.token,
-        data : state.series
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        selectEpisode : (serie, temporada, capitulo) => {
-            serieActions.selectEpisode(dispatch, serie, temporada, capitulo);
-        }
-    }
-};
+import React, { PropTypes } from 'react';
 
 class Capitulo extends React.Component {
     editCapitulo() {
@@ -25,35 +7,11 @@ class Capitulo extends React.Component {
             console.log('Vacio');
             return;
         }
-        else if(this.props.token) {
-            console.log('edit capitulo');
-            $.ajax({
-                url: config.api.url + '/series/' + this.props.serie + '/temporada/' + this.props.temporada + '/capitulo/' + this.props.capitulo,
-                headers: {
-                    'Authorization' : 'Bearer ' + this.props.token
-                },
-                data: {
-                    title: capituloName
-                },
-                type: 'PUT',
-                cache: false,
-                success: function(data, status, xhr) {
-
-                },
-                error: function(xhr, status, err) {
-                    console.error(config.api.url, status, err);
-                }
-            });
-            this.props.edit.edit = false;
-        }
-        else {
-            this.props.dispatch({
-                type: 'TOGGLE_MODAL'
-            })
-        }
+        this.props.onEdit({ title: capituloName });
+        this.props.edit.edit = false;
     }
     selected() {
-        this.props.selectEpisode(this.props.data.serie.id, this.props.data.temporada, this.props.capitulo);
+        this.props.onSelect();
     }
     renderTitle() {
         return (
@@ -80,4 +38,4 @@ class Capitulo extends React.Component {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Capitulo);
+export default Capitulo;

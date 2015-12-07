@@ -2,24 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import SeriesList from './SeriesList';
 import config from '../../config';
+import serieActions from '../../Actions/series';
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getSeries : () => {
-            $.ajax({
-                url: config.api.url + '/series',
-                dataType: 'json',
-                cache: false,
-                success: function(data) {
-                    dispatch({
-                        type: 'GET_SERIES',
-                        series: data.series
-                    })
-                }.bind(this),
-                error: function(xhr, status, err) {
-                    console.error(this.props.url, status, err.toString());
-                }.bind(this)
-            });
+            serieActions.getSeries(dispatch);
         }
     }
 }

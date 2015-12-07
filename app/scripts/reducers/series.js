@@ -4,6 +4,7 @@ const initialState = {
   comentarios: [],
   serie: {},
   temporada: null,
+  capitulo: null
 };
 
 export default function series(state=initialState, action) {
@@ -27,6 +28,11 @@ export default function series(state=initialState, action) {
             return {
                 ...state,
                 serie: action.serie
+            };
+        case 'SELECT_EPISODE':
+            return {
+                ...state,
+                capitulo: action.episode
             };
         case 'SELECT_SEASON':
             return {

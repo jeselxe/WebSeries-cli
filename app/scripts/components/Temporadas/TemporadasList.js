@@ -2,20 +2,26 @@ import React from 'react';
 import {connect} from 'react-redux';
 import ComentariosBox from '../Comentarios/ComentariosBox';
 import Temporada from './Temporada';
+import serieActions from '../../Actions/series';
 
 const mapStateToProps = (state) => {
     return {
         data : state.series.serie,
-        serie : state.series.serie
+        token : state.login.token
     }
 }
 
-class TemporadasList extends React.Component {
-    constructor(props) {
-        super(props);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        newSeason: (token, serie) => {
+            serieActions.newSeason(dispatch, token, serie);
+        }
     }
-    select(temporada) {
-        this.props.onSelect(temporada.id);
+};
+
+class TemporadasList extends React.Component {
+    newTemporada() {
+        this.props.newSeason(this.props.token, this.props.data.id)
     }
     render() {
         var temporadas = this.props.data.temporadas;
@@ -32,11 +38,11 @@ class TemporadasList extends React.Component {
                 <h4>Temporadas</h4>
                 <div className="btn-group btn-group-justified">
                     {TemporadasNodes}
-                    <a className="btn btn-primary btn-block" onClick={ this.props.onNewTemporada }><span className="glyphicon glyphicon-plus"></span></a>
+                    <a className="btn btn-primary btn-block" onClick={ this.newTemporada.bind(this) }><span className="glyphicon glyphicon-plus"></span></a>
                 </div>
             </div>
         );
     }
 }
 
-export default connect(mapStateToProps)(TemporadasList);
+export default connect(mapStateToProps, mapDispatchToProps)(TemporadasList);

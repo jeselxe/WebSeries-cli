@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
+import {Transition} from 'react-router';
 import {connect} from 'react-redux';
 import config from '../../config';
+import serieActions from '../../Actions/series';
 
 const mapStateToProps = (state) => {
     return {
@@ -8,31 +10,16 @@ const mapStateToProps = (state) => {
     }
 }
 
-class SerieForm extends React.Component {
-
-    newSerie(serie) {
-        if(this.props.token) {
-            $.ajax({
-                url: config.api.url + '/series',
-                type: 'POST',
-                headers: {
-                    'Authorization' : 'Bearer ' + this.props.token
-                },
-                data: serie,
-                success: function(data) {
-                    console.log('Serie creada');
-                },
-                error: function(xhr, status, err) {
-                    console.error(xhr, status, err);
-                }
-            });
-        }
-        else {
-            this.props.dispatch({
-                type: 'TOGGLE_MODAL'
-            })
+const mapDispatchToProps = (dispatch) => {
+    return {
+        newSerie: (token, serie) => {
+            serieActions.newSerie(dispatch, token, serie);
         }
     }
+};
+
+class SerieForm extends React.Component {
+
     handleSubmit(e) {
         e.preventDefault();
         let serie = {
@@ -43,12 +30,13 @@ class SerieForm extends React.Component {
             return;
         }
         else {
-            this.newSerie(serie);
+            this.props.newSerie(this.props.token, serie);
         }
     }
     render () {
         return (
             <div>
+                <button onClick={() => this.context.router.transitionTo('series')}></button>
                 <form action="" className="form-horizontal" onSubmit={ this.handleSubmit.bind(this) } >
                     <legend>Nueva serie</legend>
                     <div className="form-group">
@@ -68,4 +56,4 @@ class SerieForm extends React.Component {
     }
 }
 
-export default connect(mapStateToProps)(SerieForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SerieForm);

@@ -13,36 +13,18 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        selectSeason: (serie, id) => {
-            serieActions.selectSeason(dispatch, serie, id);
+        selectSeason: (serie, season) => {
+            serieActions.selectSeason(dispatch, serie, season);
+        },
+        deleteSeason: (token, serie, season) => {
+            serieActions.deleteSeason(dispatch, token, serie, season);
         }
     }
 }
 
 class Temporada extends React.Component {
     borrar() {
-        if(this.props.token) {
-            console.log('delete temporada');
-            $.ajax({
-                url: config.api.url + '/series/' + this.props.serie + '/temporada/' + this.props.id,
-                headers: {
-                    'Authorization' : 'Bearer ' + this.props.token
-                },
-                type: 'DELETE',
-                cache: false,
-                success: function(data, status, xhr) {
-
-                },
-                error: function(xhr, status, err) {
-                    console.error(config.api.url, status, err);
-                }
-            });
-        }
-        else {
-            this.props.dispatch({
-                type: 'TOGGLE_MODAL'
-            })
-        }
+        this.props.deleteSeason(this.props.token, this.props.serie.id, this.props.id);
     }
     click(){
         this.props.selectSeason(this.props.serie.id, this.props.id);
