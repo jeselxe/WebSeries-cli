@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import {connect} from 'react-redux';
 import CommentForm from './ComentariosForm';
 import CommentList from './ComentariosList';
-import serieActions from '../../Actions/series';
+import {comentariosActions} from '../../Actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -16,22 +16,22 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         updateComment: (token, serie, season, episode, comment, data) => {
-            serieActions.updateComment(dispatch, token, serie, season, episode, comment, data);
+            comentariosActions.updateComment(dispatch, token, serie, season, episode, comment, data);
         },
         deleteComment: (token, serie, season, episode, comment) => {
-            serieActions.deleteComment(dispatch, token, serie, season, episode, comment);
+            comentariosActions.deleteComment(dispatch, token, serie, season, episode, comment);
         },
         newComment: (token, serie, season, episode, data) => {
-            serieActions.newComment(dispatch, token, serie, season, episode, data);
+            comentariosActions.newComment(dispatch, token, serie, season, episode, data);
         },
         updateSerieComment: (token, serie, comment, data) => {
-            serieActions.updateSerieComment(dispatch, token, serie, comment, data);
+            comentariosActions.updateSerieComment(dispatch, token, serie, comment, data);
         },
         deleteSerieComment: (token, serie, comment) => {
-            serieActions.deleteSerieComment(dispatch, token, serie, comment);
+            comentariosActions.deleteSerieComment(dispatch, token, serie, comment);
         },
         newSerieComment: (token, serie, data) => {
-            serieActions.newSerieComment(dispatch, token, serie, data);
+            comentariosActions.newSerieComment(dispatch, token, serie, data);
         }
     }
 };
@@ -42,17 +42,17 @@ class ComentariosBox extends React.Component {
         this.state = { data : [] };
     }
     handleCommentSubmit(comment) {
-        this.props.serie ?
+        this.props.toSerie ?
         this.props.newSerieComment(this.props.token, this.props.serie.id, comment) :
         this.props.newComment(this.props.token, this.props.serie.id, this.props.temporada, this.props.capitulo, comment);
     }
     handleCommentEdited(comment) {
-        this.props.serie ?
+        this.props.toSerie ?
         this.props.updateSerieComment(this.props.token, this.props.serie.id, comment.id, comment) :
         this.props.updateComment(this.props.token, this.props.serie.id, this.props.temporada, this.props.capitulo, comment.id, comment);
     }
     handleCommentDeleted(comment) {
-        this.props.serie ?
+        this.props.toSerie ?
         this.props.deleteSerieComment(this.props.token, this.props.serie.id, comment.id) :
         this.props.deleteComment(this.props.token, this.props.serie.id, this.props.temporada, this.props.capitulo, comment.id)
     }

@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import {Transition} from 'react-router';
 import {connect} from 'react-redux';
 import config from '../../config';
-import serieActions from '../../Actions/series';
+import {seriesActions} from '../../Actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         newSerie: (token, serie) => {
-            serieActions.newSerie(dispatch, token, serie);
+            seriesActions.newSerie(dispatch, token, serie);
         }
     }
 };
@@ -36,7 +36,6 @@ class SerieForm extends React.Component {
     render () {
         return (
             <div>
-                <button onClick={() => this.context.router.transitionTo('series')}></button>
                 <form action="" className="form-horizontal" onSubmit={ this.handleSubmit.bind(this) } >
                     <legend>Nueva serie</legend>
                     <div className="form-group">

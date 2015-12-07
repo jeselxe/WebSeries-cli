@@ -3,7 +3,7 @@ import NewCapitulo from './NewCapitulo';
 import Capitulo from './Capitulo';
 import ActionButton from '../ActionButton';
 import {connect} from 'react-redux';
-import serieActions from '../../Actions/series';
+import {capitulosActions} from '../../Actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -18,16 +18,16 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         selectEpisode : (serie, temporada, capitulo) => {
-            serieActions.selectEpisode(dispatch, serie, temporada, capitulo);
+            capitulosActions.selectEpisode(dispatch, serie, temporada, capitulo);
         },
         deleteEpisode: (token, serie, season, episode) => {
-            serieActions.deleteEpisode(dispatch, token, serie, season, episode);
+            capitulosActions.deleteEpisode(dispatch, token, serie, season, episode);
         },
         newEpisode: (token, serie, season, data) => {
-            serieActions.newEpisode(dispatch, token, serie, season, data);
+            capitulosActions.newEpisode(dispatch, token, serie, season, data);
         },
         updateEpisode: (token, serie, season, episode, data) => {
-            serieActions.updateEpisode(dispatch, token, serie, season, episode, data);
+            capitulosActions.updateEpisode(dispatch, token, serie, season, episode, data);
         }
     }
 };

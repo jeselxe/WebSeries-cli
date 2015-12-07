@@ -18,7 +18,7 @@ class CapitulosBox extends React.Component {
                     <CapitulosList />
                 </div>
                 <div className="col-md-8">
-                    <ComentariosBox data={ this.props.data } serie={false} />
+                    <ComentariosBox data={ this.props.data } toSerie={false} />
                 </div>
             </div>
         );

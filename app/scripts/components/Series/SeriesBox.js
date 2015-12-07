@@ -2,12 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import SeriesList from './SeriesList';
 import config from '../../config';
-import serieActions from '../../Actions/series';
+import {seriesActions} from '../../Actions';
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getSeries : () => {
-            serieActions.getSeries(dispatch);
+            seriesActions.getSeries(dispatch);
         }
     }
 }

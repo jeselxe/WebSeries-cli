@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Tabs from 'react-simpletabs';
 import TemporadasBox from '../Temporadas/TemporadasBox';
 import InfoSerie from './InfoSerie';
-import serieActions from '../../Actions/series';
+import {seriesActions} from '../../Actions';
 import config from '../../config';
 
 const mapStateToProps = (state) => {
@@ -15,7 +15,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getSerie: (id) => {
-            serieActions.getSerie(dispatch, id);
+            seriesActions.getSerie(dispatch, id);
         }
     }
 }

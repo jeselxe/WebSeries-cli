@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import ComentariosBox from '../Comentarios/ComentariosBox';
 import Temporada from './Temporada';
-import serieActions from '../../Actions/series';
+import {temporadasActions} from '../../Actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         newSeason: (token, serie) => {
-            serieActions.newSeason(dispatch, token, serie);
+            temporadasActions.newSeason(dispatch, token, serie);
         }
     }
 };

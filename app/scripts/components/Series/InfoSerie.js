@@ -8,7 +8,7 @@ class InfoSerie extends React.Component {
             <div className="row">
                 <div className="col-md-6"><Grafica title={this.props.title} /></div>
                 <div className="col-md-6">
-                    <ComentariosBox data={this.props.comentarios} serie={true} />
+                    <ComentariosBox data={this.props.comentarios} toSerie={true} />
                 </div>
             </div>
         );

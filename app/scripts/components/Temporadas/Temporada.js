@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import ActionButton from '../ActionButton';
 import {connect} from 'react-redux';
 import config from '../../config';
-import serieActions from '../../Actions/series';
+import {temporadasActions} from '../../Actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -14,10 +14,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         selectSeason: (serie, season) => {
-            serieActions.selectSeason(dispatch, serie, season);
+            temporadasActions.selectSeason(dispatch, serie, season);
         },
         deleteSeason: (token, serie, season) => {
-            serieActions.deleteSeason(dispatch, token, serie, season);
+            temporadasActions.deleteSeason(dispatch, token, serie, season);
         }
     }
 }
