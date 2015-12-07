@@ -1,14 +1,27 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import ComentariosBox from '../Comentarios/ComentariosBox';
 import Temporada from './Temporada';
+import {temporadasActions} from '../../Actions';
+
+const mapStateToProps = (state) => {
+    return {
+        data : state.series.serie,
+        token : state.login.token
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        newSeason: (token, serie) => {
+            temporadasActions.newSeason(dispatch, token, serie);
+        }
+    }
+};
 
 class TemporadasList extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-    select(e) {
-        var temporadaId = e.target.id.split('_')[1]
-        this.props.onSelect(temporadaId);
+    newTemporada() {
+        this.props.newSeason(this.props.token, this.props.data.id)
     }
     render() {
         var temporadas = this.props.data.temporadas;
@@ -16,7 +29,7 @@ class TemporadasList extends React.Component {
         if (temporadas) {
             TemporadasNodes = temporadas.map(function (temporada) {
                 return (
-                    <Temporada serie={ this.props.serie } id={ temporada.id } onClick={ this.select.bind(this) } key={ temporada.id }>{temporada.season}</Temporada>
+                    <Temporada id={ temporada.id } key={ temporada.id }>{temporada.season}</Temporada>
                 );
             }.bind(this));
         }
@@ -25,11 +38,11 @@ class TemporadasList extends React.Component {
                 <h4>Temporadas</h4>
                 <div className="btn-group btn-group-justified">
                     {TemporadasNodes}
-                    <a className="btn btn-primary btn-block" onClick={ this.props.onNewTemporada }><span className="glyphicon glyphicon-plus"></span></a>
+                    <a className="btn btn-primary btn-block" onClick={ this.newTemporada.bind(this) }><span className="glyphicon glyphicon-plus"></span></a>
                 </div>
             </div>
         );
     }
 }
 
-export default TemporadasList;
+export default connect(mapStateToProps, mapDispatchToProps)(TemporadasList);

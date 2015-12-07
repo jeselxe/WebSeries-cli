@@ -1,6 +1,13 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import ActionButton from '../ActionButton';
+
+const mapStateToProps = (state) => {
+    return {
+        data: state.series.series
+    }
+}
 
 class SeriesList extends React.Component {
     render() {
@@ -18,7 +25,7 @@ class SeriesList extends React.Component {
                     </div>
                 </div>
             );
-        })
+        }.bind(this));
         return (
             <div className="SeriesList list-group">
                 { (this.props.data.length < 1) ?
@@ -38,4 +45,4 @@ class SeriesList extends React.Component {
 }
 
 
-export default SeriesList;
+export default connect(mapStateToProps)(SeriesList);

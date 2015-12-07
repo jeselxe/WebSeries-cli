@@ -62,7 +62,6 @@ class Grafica extends React.Component {
         });
     }
     componentDidMount() {
-        console.log('componentDidMount');
         this.getVisualizaciones(this.props.title);
     }
     render () {

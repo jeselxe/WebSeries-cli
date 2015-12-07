@@ -1,12 +1,4 @@
-import React, { PropTypes } from 'react'
-import {connect} from 'react-redux';
-import config from '../../config';
-
-const mapStateToProps = (state) => {
-    return {
-        token : state.login.token
-    }
-}
+import React, { PropTypes } from 'react';
 
 class Capitulo extends React.Component {
     editCapitulo() {
@@ -15,36 +7,15 @@ class Capitulo extends React.Component {
             console.log('Vacio');
             return;
         }
-        else if(this.props.token) {
-            console.log('edit capitulo');
-            $.ajax({
-                url: config.api.url + '/series/' + this.props.serie + '/temporada/' + this.props.temporada + '/capitulo/' + this.props.capitulo,
-                headers: {
-                    'Authorization' : 'Bearer ' + this.props.token
-                },
-                data: {
-                    title: capituloName
-                },
-                type: 'PUT',
-                cache: false,
-                success: function(data, status, xhr) {
-
-                },
-                error: function(xhr, status, err) {
-                    console.error(config.api.url, status, err);
-                }
-            });
-            this.props.edit.edit = false;
-        }
-        else {
-            this.props.dispatch({
-                type: 'TOGGLE_MODAL'
-            })
-        }
+        this.props.onEdit({ title: capituloName });
+        this.props.edit.edit = false;
+    }
+    selected() {
+        this.props.onSelect();
     }
     renderTitle() {
         return (
-            <a onClick={ this.props.clicked }>{ this.props.children }</a>
+            <a onClick={ this.selected.bind(this) }>{ this.props.children }</a>
         );
     }
     renderSubmit() {
@@ -67,4 +38,4 @@ class Capitulo extends React.Component {
     }
 }
 
-export default connect(mapStateToProps)(Capitulo);
+export default Capitulo;

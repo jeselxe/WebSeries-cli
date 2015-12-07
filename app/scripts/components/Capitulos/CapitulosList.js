@@ -3,14 +3,34 @@ import NewCapitulo from './NewCapitulo';
 import Capitulo from './Capitulo';
 import ActionButton from '../ActionButton';
 import {connect} from 'react-redux';
-import config from '../../config';
+import {capitulosActions} from '../../Actions';
 
 const mapStateToProps = (state) => {
     return {
-        token : state.login.token
+        token : state.login.token,
+        data: state.series.capitulos,
+        serie: state.series.serie,
+        temporada: state.series.temporada
+
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        selectEpisode : (serie, temporada, capitulo) => {
+            capitulosActions.selectEpisode(dispatch, serie, temporada, capitulo);
+        },
+        deleteEpisode: (token, serie, season, episode) => {
+            capitulosActions.deleteEpisode(dispatch, token, serie, season, episode);
+        },
+        newEpisode: (token, serie, season, data) => {
+            capitulosActions.newEpisode(dispatch, token, serie, season, data);
+        },
+        updateEpisode: (token, serie, season, episode, data) => {
+            capitulosActions.updateEpisode(dispatch, token, serie, season, episode, data);
+        }
+    }
+};
 
 class CapitulosList extends React.Component {
     constructor(props) {
@@ -22,32 +42,11 @@ class CapitulosList extends React.Component {
             }
         }
     }
-    select(capitulo) {
-        this.props.onSelect(capitulo.id);
-    }
     borrar(capitulo) {
-        if(this.props.token) {
-            console.log('delete capitulo');
-            $.ajax({
-                url: config.api.url + '/series/' + this.props.serie + '/temporada/' + this.props.temporada + '/capitulo/' + capitulo.id,
-                headers: {
-                    'Authorization' : 'Bearer ' + this.props.token
-                },
-                type: 'DELETE',
-                cache: false,
-                success: function(data, status, xhr) {
-
-                },
-                error: function(xhr, status, err) {
-                    console.error(config.api.url, status, err);
-                }
-            });
-        }
-        else {
-            this.props.dispatch({
-                type: 'TOGGLE_MODAL'
-            })
-        }
+        this.props.deleteEpisode(this.props.token, this.props.serie.id, this.props.temporada, capitulo.id);
+    }
+    nuevo(data) {
+        this.props.newEpisode(this.props.token, this.props.serie.id, this.props.temporada, data);
     }
     editar(capitulo) {
         this.setState({
@@ -57,11 +56,17 @@ class CapitulosList extends React.Component {
             }
         });
     }
+    onEdit(capitulo, data) {
+        this.props.updateEpisode(this.props.token, this.props.serie.id, this.props.temporada, capitulo.id, data);
+    }
+    onSelect(capitulo) {
+        this.props.selectEpisode(this.props.serie.id, this.props.temporada, capitulo.id);
+    }
     render () {
         var CapitulosNodes = this.props.data.map(function (capitulo) {
             return (
                 <div className="list-group-item actions-list" key={capitulo.id}>
-                    <Capitulo clicked={ this.select.bind(this, capitulo) } edit={this.state.editar} serie={ this.props.serie } temporada={ this.props.temporada } capitulo={capitulo.id}>{capitulo.title}</Capitulo>
+                    <Capitulo edit={this.state.editar} capitulo={capitulo.id} onEdit={ this.onEdit.bind(this, capitulo) } onSelect={ this.onSelect.bind(this, capitulo) }>{capitulo.title}</Capitulo>
                     <div className="actions">
                         <ActionButton>
                             <ActionButton.Item onClick={ this.borrar.bind(this, capitulo) }>Borrar</ActionButton.Item>
@@ -76,10 +81,10 @@ class CapitulosList extends React.Component {
             <div className="CapitulosList list-group">
                 <h4>Capitulos</h4>
                 {CapitulosNodes}
-                <NewCapitulo serie={ this.props.serie } temporada={ this.props.temporada } />
+                <NewCapitulo onNewCapitulo={ this.nuevo.bind(this) } />
             </div>
         );
     }
 }
 
-export default connect(mapStateToProps)(CapitulosList);
+export default connect(mapStateToProps, mapDispatchToProps)(CapitulosList);

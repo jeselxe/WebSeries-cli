@@ -1,12 +1,5 @@
-import React, { PropTypes } from 'react'
-import {connect} from 'react-redux';
+import React, { PropTypes } from 'react';
 import config from '../../config';
-
-const mapStateToProps = (state) => {
-    return {
-        token : state.login.token
-    }
-}
 
 class NewCapitulo extends React.Component {
     constructor(props) {
@@ -26,31 +19,10 @@ class NewCapitulo extends React.Component {
             console.log('Vacio');
             return;
         }
-        else if(this.props.token) {
-            console.log('new capitulo');
-            $.ajax({
-                url: config.api.url + '/series/' + this.props.serie + '/temporada/' + this.props.temporada + '/capitulo',
-                headers: {
-                    'Authorization' : 'Bearer ' + this.props.token
-                },
-                data: {
-                    title: capituloName
-                },
-                type: 'POST',
-                cache: false,
-                success: function(data, status, xhr) {
-
-                },
-                error: function(xhr, status, err) {
-                    console.error(config.api.url, status, err);
-                }
-            });
-        }
-        else {
-            this.props.dispatch({
-                type: 'TOGGLE_MODAL'
-            })
-        }
+        this.props.onNewCapitulo({ title: capituloName });
+        this.setState({
+            adding: false 
+        });
     }
     renderAddButton() {
         return (
@@ -77,4 +49,4 @@ class NewCapitulo extends React.Component {
     }
 }
 
-export default connect(mapStateToProps)(NewCapitulo);
+export default NewCapitulo;
