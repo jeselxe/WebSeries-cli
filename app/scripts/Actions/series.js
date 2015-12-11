@@ -82,9 +82,61 @@ const newSerie = (dispatch, token, serie) => {
     }
 }
 
+const deleteSerie = (dispatch, token, id) => {
+    if(token) {
+        $.ajax({
+            url: config.api.url + '/series/' + id,
+            type: 'DELETE',
+            headers: {
+                'Authorization' : 'Bearer ' + token
+            },
+            dataType: 'json',
+            cache: false,
+            success: function(data) {
+                getSeries(dispatch);
+                notification.newSuccessNotification(dispatch, 'La serie se ha eliminado correctamente');
+            },
+            error: function(xhr, status, err) {
+                console.error(config.api.url, status, err.toString());
+                notification.newErrorNotification(dispatch, 'Ha habido un error al eliminar la serie');
+            }
+        });
+    }
+    else {
+        modal(dispatch);
+    }
+}
+
+const updateSerie = (dispatch, token, id, serie) => {
+    if(token) {
+        $.ajax({
+            url: config.api.url + '/series/' + id,
+            type: 'PUT',
+            headers: {
+                'Authorization' : 'Bearer ' + token
+            },
+            data: serie,
+            success: function(data) {
+                console.log(id);
+                getSerie(dispatch, id);
+                notification.newSuccessNotification(dispatch, 'La serie ' + serie.title + ' se ha actualizado correctamente');
+            },
+            error: function(xhr, status, err) {
+                console.error(xhr, status, err);
+                notification.newErrorNotification(dispatch, 'Ha habido un error al actualizar la serie');
+            }
+        });
+    }
+    else {
+        modal(dispatch);
+    }
+}
+
 export default {
     getSeries,
     getSerie,
     newSerie,
-    selectSerie
+    selectSerie,
+    deleteSerie,
+    updateSerie
 }

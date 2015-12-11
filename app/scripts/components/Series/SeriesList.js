@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
-import ActionButton from '../ActionButton';
 
 const mapStateToProps = (state) => {
     return {
@@ -13,16 +12,10 @@ class SeriesList extends React.Component {
     render() {
         var SeriesNodes = this.props.data.map(function (serie) {
             return (
-                <div className="list-group-item actions-list" key={serie.id}>
+                <div className="list-group-item" key={serie.id}>
                     <Link to={`/serie/${serie.id}`}>
                         {serie.title}
                     </Link>
-                    <div className="actions">
-                        <ActionButton>
-                            <ActionButton.Item>Borrar</ActionButton.Item>
-                            <ActionButton.Item>Editar</ActionButton.Item>
-                        </ActionButton>
-                    </div>
                 </div>
             );
         }.bind(this));

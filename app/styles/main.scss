@@ -17,6 +17,25 @@ textarea {
     resize: none;
 }
 
+.jumbotron {
+    position: relative;
+}
+
+.edit {
+    button {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+    }
+    .transparent {
+        background-color: transparent;
+        border: none;
+        border-bottom: solid 1px grey;
+        box-shadow: none;
+    }
+}
+
+
 .commentBox {
     overflow-y: scroll;
     max-height: 500px;
@@ -43,6 +62,7 @@ textarea {
 .tabs-navigation {
   padding: 0 50px;
   max-height: 50px;
+  position: relative;
 }
 .tabs-menu {
   display: table;
