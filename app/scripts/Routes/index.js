@@ -8,8 +8,10 @@ import Noticia from '../Components/Noticias/Noticia';
 import Register from '../Components/Login/Register';
 import App from '../Components/App';
 
-export default (
-     <Router history={HistoryLocation}>
+export default class Routes extends React.Component {
+    render() {
+    return (
+     <Router history={this.props.history}>
           <Route component={App} path='/'>
            <IndexRoute component={Series} />
            <Route path="series" component={Series} />
@@ -21,3 +23,5 @@ export default (
          </Route>
      </Router>
  );
+ }
+ }
