@@ -1,0 +1,28 @@
+.notification {
+    position: absolute;
+    top: 15px;
+    right: -250px;
+    z-index: 10;
+    color: white;
+    padding: 15px;
+    max-width: 250px;
+    border-radius: 5px;
+    opacity: 0;
+    -webkit-transition: right .3s ease-in, opacity .5s;
+       -moz-transition: right .3s ease-in, opacity .5s;
+         -o-transition: right .3s ease-in, opacity .5s;
+            transition: right .3s ease-in, opacity .5s;
+
+    &.success {
+        background-color: #449d44;
+    }
+
+    &.error {
+        background-color: #d43f3a;
+    }
+
+    &.active {
+        opacity: 1;
+        right: 15px;
+    }
+}

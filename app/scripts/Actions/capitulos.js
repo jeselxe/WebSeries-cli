@@ -1,6 +1,7 @@
 import config from '../config';
 import temporadas from './temporadas';
 import modal from './modal';
+import notification from './notification';
 
 const selectEpisode = (dispatch, serie, season, episode) => {
     $.ajax({
@@ -35,9 +36,11 @@ const deleteEpisode = (dispatch, token, serie, season, episode) => {
             cache: false,
             success: function(data, status, xhr) {
                 temporadas.selectSeason(dispatch, serie, season);
+                notification.newSuccessNotification(dispatch, 'El capítulo se ha eliminado correctamente');
             },
             error: function(xhr, status, err) {
                 console.error(config.api.url, status, err);
+                notification.newErrorNotification(dispatch, 'Ha habido un error al eliminar el capítulo');
             }
         });
     }
@@ -58,9 +61,11 @@ const newEpisode = (dispatch, token, serie, season, data) => {
             cache: false,
             success: function(data, status, xhr) {
                 temporadas.selectSeason(dispatch, serie, season);
+                notification.newSuccessNotification(dispatch, 'El capítulo se ha creado correctamente');
             },
             error: function(xhr, status, err) {
                 console.error(config.api.url, status, err);
+                notification.newErrorNotification(dispatch, 'Ha habido un error al crear el capítulo');
             }
         });
     }
@@ -81,9 +86,11 @@ const updateEpisode = (dispatch, token, serie, season, episode, data) => {
             cache: false,
             success: function(data, status, xhr) {
                 temporadas.selectSeason(dispatch, serie, season);
+                notification.newSuccessNotification(dispatch, 'El capítulo se ha actualizado correctamente');
             },
             error: function(xhr, status, err) {
                 console.error(config.api.url, status, err);
+                notification.newErrorNotification(dispatch, 'Ha habido un error al actualizar el capítulo');
             }
         });
     }

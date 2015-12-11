@@ -1,6 +1,7 @@
 import config from '../config';
 import temporadas from './temporadas';
 import modal from './modal';
+import notification from './notification';
 
 const getSeries = (dispatch) => {
     $.ajax({
@@ -68,10 +69,11 @@ const newSerie = (dispatch, token, serie) => {
             data: serie,
             success: function(data) {
                 getSeries(dispatch);
-                console.log('Serie creada');
+                notification.newSuccessNotification(dispatch, 'La serie ' + serie.title + ' se ha creado correctamente');
             },
             error: function(xhr, status, err) {
                 console.error(xhr, status, err);
+                notification.newErrorNotification(dispatch, 'Ha habido un error al crear la serie');
             }
         });
     }

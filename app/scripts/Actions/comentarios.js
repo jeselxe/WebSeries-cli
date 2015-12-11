@@ -2,6 +2,7 @@ import config from '../config';
 import capitulos from './capitulos';
 import series from './series';
 import modal from './modal';
+import notification from './notification';
 
 const newComment = (dispatch, token, serie, season, episode, data) => {
     if(token) {
@@ -14,9 +15,11 @@ const newComment = (dispatch, token, serie, season, episode, data) => {
             data,
             success: function(data) {
                 capitulos.selectEpisode(dispatch, serie, season, episode);
+                notification.newSuccessNotification(dispatch, 'El comentario se ha añadido correctamente');
             },
             error: function(xhr, status, err) {
                 console.error(config.api.url, status, err.toString());
+                notification.newErrorNotification(dispatch, 'Ha habido un error al añadir el comentario');
             }
         });
     }
@@ -36,9 +39,11 @@ const newSerieComment = (dispatch, token, serie, data) => {
             data,
             success: function(data) {
                 series.selectSerie(dispatch, serie);
+                notification.newSuccessNotification(dispatch, 'El comentario se ha añadido correctamente');
             },
             error: function(xhr, status, err) {
                 console.error(config.api.url, status, err.toString());
+                notification.newErrorNotification(dispatch, 'Ha habido un error al añadir el comentario');
             }
         });
     }
@@ -58,9 +63,11 @@ const updateComment = (dispatch, token, serie, season, episode, comment, data) =
             data,
             success: function(data) {
                 capitulos.selectEpisode(dispatch, serie, season, episode);
+                notification.newSuccessNotification(dispatch, 'El comentario se ha actualizado correctamente');
             },
             error: function(xhr, status, err) {
                 console.error(config.api.url, status, err.toString());
+                notification.newErrorNotification(dispatch, 'Ha habido un error al actualizar el comentario');
             }
         });
     }
@@ -80,9 +87,11 @@ const updateSerieComment = (dispatch, token, serie, comment, data) => {
             data,
             success: function(data) {
                 series.selectSerie(dispatch, serie);
+                notification.newSuccessNotification(dispatch, 'El comentario se ha actualizado correctamente');
             },
             error: function(xhr, status, err) {
                 console.error(config.api.url, status, err.toString());
+                notification.newErrorNotification(dispatch, 'Ha habido un error al actualizar el comentario');
             }
         });
     }
@@ -101,9 +110,11 @@ const deleteComment = (dispatch, token, serie, season, episode, comment) => {
             type: 'DELETE',
             success: function(data) {
                 capitulos.selectEpisode(dispatch, serie, season, episode);
+                notification.newSuccessNotification(dispatch, 'El comentario se ha eliminado correctamente');
             },
             error: function(xhr, status, err) {
                 console.error(config.api.url, status, err.toString());
+                notification.newErrorNotification(dispatch, 'Ha habido un error al eliminar el comentario');
             }
         });
     }
@@ -122,9 +133,11 @@ const deleteSerieComment = (dispatch, token, serie, comment) => {
             type: 'DELETE',
             success: function(data) {
                 series.selectSerie(dispatch, serie);
+                notification.newSuccessNotification(dispatch, 'El comentario se ha eliminado correctamente');
             },
             error: function(xhr, status, err) {
                 console.error(config.api.url, status, err.toString());
+                notification.newErrorNotification(dispatch, 'Ha habido un error al eliminar el comentario');
             }
         });
     }

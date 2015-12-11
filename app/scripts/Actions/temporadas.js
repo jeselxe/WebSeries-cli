@@ -2,6 +2,7 @@ import config from '../config';
 import capitulos from './capitulos';
 import series from './series';
 import modal from './modal';
+import notification from './notification';
 
 const selectSeason = (dispatch, serie, season) => {
     $.ajax({
@@ -36,10 +37,12 @@ const newSeason = (dispatch, token, serie) => {
             type: 'POST',
             cache: false,
             success: function(data, status, xhr) {
-                series.getSerie(dispatch, serie)
+                series.getSerie(dispatch, serie);
+                notification.newSuccessNotification(dispatch, 'La temporada se ha creado correctamente');
             },
             error: function(xhr, status, err) {
                 console.error(config.api.url, status, err);
+                notification.newErrorNotification(dispatch, 'Ha habido un error al crear la temporada');
             }
         });
     }
@@ -59,9 +62,11 @@ const deleteSeason = (dispatch, token, serie, season) => {
             cache: false,
             success: function(data, status, xhr) {
                 series.getSerie(dispatch, serie);
+                notification.newSuccessNotification(dispatch, 'La temporada se ha eliminado correctamente');
             },
             error: function(xhr, status, err) {
                 console.error(config.api.url, status, err);
+                notification.newErrorNotification(dispatch, 'Ha habido un error al eliminar la temporada');
             }
         });
     }
