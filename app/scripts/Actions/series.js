@@ -120,7 +120,6 @@ const updateSerie = (dispatch, token, id, serie) => {
             },
             data: serie,
             success: function(data) {
-                console.log(id);
                 getSerie(dispatch, id);
                 notification.newSuccessNotification(dispatch, 'La serie ' + serie.title + ' se ha actualizado correctamente');
             },

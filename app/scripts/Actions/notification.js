@@ -24,7 +24,7 @@ const newErrorNotification = (dispatch, message, duration) => {
     });
     setTimeout(function () {
         dismissNotification(dispatch);
-    }, duration || 2000)
+    }, duration || 3000)
 }
 
 export default {
