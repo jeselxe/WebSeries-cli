@@ -27,7 +27,9 @@ export default function series(state=initialState, action) {
         case 'SELECT_SERIE':
             return {
                 ...state,
-                serie: action.serie
+                serie: action.serie,
+                capitulos: [],
+                comentarios: []
             };
         case 'SELECT_EPISODE':
             return {
