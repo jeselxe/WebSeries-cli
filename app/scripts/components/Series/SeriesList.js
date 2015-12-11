@@ -12,11 +12,10 @@ class SeriesList extends React.Component {
     render() {
         var SeriesNodes = this.props.data.map(function (serie) {
             return (
-                <div className="list-group-item" key={serie.id}>
-                    <Link to={`/serie/${serie.id}`}>
-                        {serie.title}
+                    <Link to={`/serie/${serie.id}`} className="list-group-item" key={serie.id}>
+                        <h4 class="list-group-item-heading">{serie.title}</h4>
+                        <p class="list-group-item-text">{serie.description}</p>
                     </Link>
-                </div>
             );
         }.bind(this));
         return (

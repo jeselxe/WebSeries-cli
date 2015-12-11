@@ -27,7 +27,6 @@ export default class Nav extends Component {
                             <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Noticias</a>
                             <ul className="dropdown-menu">
                                 <li><Link to="/noticias/ultimas">Últimas</Link></li>
-                                <li><Link to="/noticias/interesantes">Interesantes</Link></li>
                                 <li><Link to="/noticias/top">top</Link></li>
                                 <li><Link to="/noticias/mas_vistas">Más vistas</Link></li>
                                 <li><Link to="/noticias/mas_votadas">Más votadas</Link></li>
