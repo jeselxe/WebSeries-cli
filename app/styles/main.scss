@@ -35,6 +35,13 @@ textarea {
     }
 }
 
+.list-group-item {
+    &.active {
+        a {
+            color: white;
+        }
+    }
+}
 
 .commentBox {
     overflow-y: scroll;

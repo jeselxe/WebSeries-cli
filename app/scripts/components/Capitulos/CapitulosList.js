@@ -10,8 +10,8 @@ const mapStateToProps = (state) => {
         token : state.login.token,
         data: state.series.capitulos,
         serie: state.series.serie,
-        temporada: state.series.temporada
-
+        temporada: state.series.temporada,
+        capitulo: state.series.capitulo
     }
 }
 
@@ -64,8 +64,10 @@ class CapitulosList extends React.Component {
     }
     render () {
         var CapitulosNodes = this.props.data.map(function (capitulo) {
+            let style = "list-group-item actions-list";
+            if (this.props.capitulo === capitulo.id) style += " active";
             return (
-                <div className="list-group-item actions-list" key={capitulo.id}>
+                <li className={style} key={capitulo.id}>
                     <Capitulo edit={this.state.editar} capitulo={capitulo.id} onEdit={ this.onEdit.bind(this, capitulo) } onSelect={ this.onSelect.bind(this, capitulo) }>{capitulo.title}</Capitulo>
                     <div className="actions">
                         <ActionButton>
@@ -73,15 +75,17 @@ class CapitulosList extends React.Component {
                             <ActionButton.Item onClick={ this.editar.bind(this, capitulo) }>Editar</ActionButton.Item>
                         </ActionButton>
                     </div>
-                </div>
+                </li>
             );
         }.bind(this));
 
         return (
-            <div className="CapitulosList list-group">
+            <div className="CapitulosList">
                 <h4>Capitulos</h4>
-                {CapitulosNodes}
-                <NewCapitulo onNewCapitulo={ this.nuevo.bind(this) } />
+                <ul className="list-group">
+                    {CapitulosNodes}
+                    <NewCapitulo onNewCapitulo={ this.nuevo.bind(this) } />
+                </ul>
             </div>
         );
     }

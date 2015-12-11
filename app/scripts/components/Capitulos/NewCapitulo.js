@@ -21,7 +21,7 @@ class NewCapitulo extends React.Component {
         }
         this.props.onNewCapitulo({ title: capituloName });
         this.setState({
-            adding: false 
+            adding: false
         });
     }
     renderAddButton() {
@@ -44,7 +44,7 @@ class NewCapitulo extends React.Component {
     }
     render () {
         return(
-            <div className="">{ this.state.adding ? this.renderSubmit() : this.renderAddButton() }</div>
+            <div className="list-group-item">{ this.state.adding ? this.renderSubmit() : this.renderAddButton() }</div>
         );
     }
 }
