@@ -1,3 +1,4 @@
+import {pushPath} from 'redux-simple-router';
 import config from '../config';
 import temporadas from './temporadas';
 import modal from './modal';
@@ -70,6 +71,7 @@ const newSerie = (dispatch, token, serie) => {
             success: function(data) {
                 getSeries(dispatch);
                 notification.newSuccessNotification(dispatch, 'La serie ' + serie.title + ' se ha creado correctamente');
+                dispatch(pushPath('/series'));
             },
             error: function(xhr, status, err) {
                 console.error(xhr, status, err);
@@ -95,6 +97,7 @@ const deleteSerie = (dispatch, token, id) => {
             success: function(data) {
                 getSeries(dispatch);
                 notification.newSuccessNotification(dispatch, 'La serie se ha eliminado correctamente');
+                dispatch(pushPath('/series'));
             },
             error: function(xhr, status, err) {
                 console.error(config.api.url, status, err.toString());
