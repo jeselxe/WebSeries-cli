@@ -1,6 +1,16 @@
 {
   "name": "webseries-cli",
   "version": "0.0.0",
+  "description": "Client for WebSeries made in React",
+  "keywords": ["React", "Redux", "Series"],
+  "author": {
+    "name": "Jesús Gallego Irles",
+    "email": "jesusgallego@outlook.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeselxe/WebSeries-cli.git"  
+  },
   "dependencies": {
     "history": "^1.13.1",
     "marked": "^0.3.5",
