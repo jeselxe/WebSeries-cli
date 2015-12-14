@@ -6,7 +6,6 @@ import InfoSerie from './InfoSerie';
 
 import ActionButton from '../ActionButton';
 import {seriesActions} from '../../Actions';
-import config from '../../config';
 
 const mapStateToProps = (state) => {
     return {

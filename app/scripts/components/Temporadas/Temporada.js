@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import ActionButton from '../ActionButton';
 import {connect} from 'react-redux';
-import config from '../../config';
 import {temporadasActions} from '../../Actions';
 
 const mapStateToProps = (state) => {

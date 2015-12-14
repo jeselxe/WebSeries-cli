@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import config from '../../config';
 
 class NewCapitulo extends React.Component {
     constructor(props) {

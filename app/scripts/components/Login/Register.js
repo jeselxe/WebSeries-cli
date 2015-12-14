@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import config from '../../config';
 import {loginActions} from '../../Actions';
 
 const mapDispatchToProps = (dispatch) => {

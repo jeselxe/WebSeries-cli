@@ -1,7 +1,5 @@
 import React, { PropTypes } from 'react';
-import {Transition} from 'react-router';
 import {connect} from 'react-redux';
-import config from '../../config';
 import {seriesActions} from '../../Actions';
 
 const mapStateToProps = (state) => {

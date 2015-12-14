@@ -1,18 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import config from '../../config';
-import cookie from '../../utils/cookie';
 import {loginActions} from '../../Actions';
-
-function saveAuthToken(token) {
-  const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-  console.log('Save token');
-  cookie.set({
-    name: 'token',
-    value: token,
-    expires
-  });
-}
 
 const mapStateToProps = (state) => {
     return {
@@ -21,11 +9,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        login: (user, password) => {
-            let login = {
-                user,
-                password
-            };
+        login: (login) => {
             loginActions.login(dispatch, login);
         }
     }
@@ -46,7 +30,7 @@ class LoginForm extends Component {
             user : this.refs.user.value,
             password : this.refs.password.value
         }
-        this.props.login(login.user, login.password);
+        this.props.login(login);
 
     }
     render () {

@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import SeriesList from './SeriesList';
-import config from '../../config';
 import {seriesActions} from '../../Actions';
 
 const mapDispatchToProps = (dispatch) => {

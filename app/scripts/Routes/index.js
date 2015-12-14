@@ -1,5 +1,5 @@
 import React from 'react';
-import {Router, Route, IndexRoute, HistoryLocation} from 'react-router';
+import {Router, Route, IndexRoute} from 'react-router';
 import Series from '../Components/Series/SeriesBox';
 import Serie from '../Components/Series/Serie';
 import SerieForm from '../Components/Series/SerieForm';
