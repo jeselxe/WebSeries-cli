@@ -1,7 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import config from '../../config';
+import {loginActions} from '../../Actions';
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        register: (login) => {
+            loginActions.register(dispatch, login);
+        }
+    }
+};
+
+@connect(null, mapDispatchToProps)
 class Register extends Component {
     static propTypes = {
         register: PropTypes.func.isRequired
@@ -16,18 +26,7 @@ class Register extends Component {
             nickname,
             password
         };
-        $.ajax({
-            url: config.api.url + '/usuario',
-            dataType: 'json',
-            type: 'POST',
-            data: login,
-            success: function() {
-                console.log('Registrado!');
-            },
-            error: function(xhr, status, err) {
-                console.log(xhr, status, err);
-            }
-        });
+        this.props.register(login);
     }
     handleSubmit(e) {
         e.preventDefault();

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import config from '../../config';
 import cookie from '../../utils/cookie';
+import {loginActions} from '../../Actions';
 
 function saveAuthToken(token) {
   const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
@@ -25,34 +26,7 @@ const mapDispatchToProps = (dispatch) => {
                 user,
                 password
             };
-            $.ajax({
-                url: config.api.url + '/usuario/login',
-                dataType: 'json',
-                type: 'POST',
-                data: login,
-                success: function(data) {
-                    console.log(data);
-                    const token = data.token;
-                    saveAuthToken(token);
-                    dispatch({
-                        type: 'LOGIN_SUCCESS',
-                        token
-                    });
-                    dispatch({
-                        type: 'TOGGLE_MODAL'
-                    })
-                }.bind(this),
-                error: function(xhr, status, err) {
-                    let error = 'Unknown error occured :-(. Please, try again later.';
-                    if(xhr.status == 401){
-                        error = xhr.responseText;
-                    }
-                    dispatch({
-                        type: 'LOGIN_FAILURE',
-                        error
-                    });
-                }.bind(this)
-            });
+            loginActions.login(dispatch, login);
         }
     }
 };

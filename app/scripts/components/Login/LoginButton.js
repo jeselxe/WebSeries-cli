@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import {connect} from 'react-redux';
 import cookie from '../../utils/cookie';
+import {loginActions, modal} from '../../Actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -10,15 +11,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onLogoutClicked: () => {
-            cookie.unset('token');
-            dispatch({
-                type: 'LOGOUT'
-            })
+            loginActions.logout(dispatch);
         },
         onLoginClicked: () => {
-            dispatch({
-                type: 'TOGGLE_MODAL'
-            })
+            modal(dispatch);
         }
     }
 }

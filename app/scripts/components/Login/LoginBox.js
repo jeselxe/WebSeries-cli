@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import {connect} from 'react-redux';
 import LoginForm from './LoginForm';
 import LoginButton from './LoginButton';
+import {modal} from '../../Actions';
 import Modal from 'react-modal';
 import cookie from '../../utils/cookie';
 
@@ -14,9 +15,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         closeModal : () => {
-            dispatch({
-                type: 'TOGGLE_MODAL'
-            })
+            modal(dispatch);
         },
         init: () => {
             dispatch({
